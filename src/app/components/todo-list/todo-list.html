@@ -1,0 +1,23 @@
+<h2>Todo List</h2>
+<app-todo-form></app-todo-form>
+<!-- <div>
+  <input type="text" placeholder="Add a todo" #todoInput />
+  <button (click)="addTodo(todoInput.value)">Add</button>
+</div> -->
+
+@if (todos.length === 0) {
+  <p>No todos yet.</p>
+} @else {
+  <ul>
+    @for (todo of todos; track todo.id) {
+      <li>
+        <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)" />
+        <span [style.text-decoration]="todo.completed ? 'line-through' : 'none'">
+          {{ todo.text }}
+        </span>
+        <button (click)="deleteTodo(todo.id)">Delete</button>
+        <button (click)="toggleTodo(todo.id)">Toggle</button>
+      </li>
+    }
+  </ul>
+}
