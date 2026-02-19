@@ -1,1 +1,7 @@
-<p>todo-item works!</p>
+<p>todo-item component works</p>
+<li class="todo-row">
+  <input type="checkbox" [checked]="todo.completed" (change)="emitToggleTodo(todo.id)" />
+  <span [class.done]="todo.completed">{{ todo.text }}</span>
+  <button (click)="emitDeleteTodo(todo.id)">Delete</button>
+  <button (click)="emitToggleTodo(todo.id)">Toggle</button>
+</li>

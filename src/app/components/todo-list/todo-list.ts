@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Todo } from '../../models/todo';
 import { TodoService } from '../../services/todo.service';
-import { TodeForm } from '../tode-form/tode-form';
+import { TodoItem } from '../todo-item/todo-item';
+import { TodoForm } from '../todo-form/todo-form';
 
 @Component({
   selector: 'app-todo-list',
-  imports: [TodoForm],
+  imports: [TodoForm, TodoItem],
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.scss',
 })
