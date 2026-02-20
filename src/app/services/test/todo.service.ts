@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Todo } from '../models/todo';
+import { TodoModel } from '../../models/todo.models';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 type ApiTodo = {
   userId: number;
@@ -14,13 +15,13 @@ type ApiTodo = {
   providedIn: 'root',
 })
 export class TodoService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com/todos';
+  private apiUrl = `${environment.apiBaseUrl}/todos`;
 
   // constructor(private http: HttpClient) {}
 
-  private todos: Todo[] = [
-    { id: 1, text: 'Learn Angular', completed: false },
-    { id: 2, text: 'Build Todo List', completed: true },
+  private todos: TodoModel[] = [
+    { id: 1, title: 'Learn Angular', completed: false, userId: 1 },
+    { id: 2, title: 'Build Todo List', completed: true, userId: 1 },
   ];
 
   // getTodos(): Observable<Array<Todo>> {
@@ -33,17 +34,18 @@ export class TodoService {
   //   );
   // }
 
-  getTodos(): Todo[] {
+  getTodos(): TodoModel[] {
     return [...this.todos];
   }
   addTodo(text: string): void {
     const trimmedText = text.trim();
     if (!trimmedText) return;
 
-    const newTodo: Todo = {
+    const newTodo: TodoModel = {
       id: Date.now(),
-      text: trimmedText,
+      title: trimmedText,
       completed: false,
+      userId: 1,
     };
 
     this.todos.push(newTodo);

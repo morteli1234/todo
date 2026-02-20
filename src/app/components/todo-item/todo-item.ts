@@ -7,7 +7,7 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
   styleUrl: './todo-item.scss',
 })
 export class TodoItem {
-  @Input() todo!: { id: number; text: string; completed: boolean };
+  @Input() todo!: { id: number; title: string; completed: boolean };
 
   @Output() toggle = new EventEmitter<number>();
   @Output() delete = new EventEmitter<number>();
