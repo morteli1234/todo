@@ -72,6 +72,24 @@ export class TodoList {
     });
   }
 
+  updateTodo(event: { id: number; title: string }): void {
+    const current = this.todos.find((t) => t.id === event.id);
+    if (!current) return;
+
+    const payload = { title: event.title };
+    console.log('PUT payload:', { id: event.id, ...payload });
+    this.httpclientService.updateData(event.id, payload).subscribe({
+      next: (res) => {
+        console.log('PUT response:', res);
+        this.todos = this.todos.map((t) => (t.id === event.id ? { ...t, title: event.title } : t));
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Failed to update todo:', err);
+      },
+    });
+  }
+
   deleteTodo(id: number): void {
     this.httpclientService.deleteData(id).subscribe({
       next: (res) => {

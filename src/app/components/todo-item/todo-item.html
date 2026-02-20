@@ -2,6 +2,8 @@
 <li class="todo-row">
   <input type="checkbox" [checked]="todo.completed" (change)="emitToggleTodo(todo.id)" />
   <span [class.done]="todo.completed">{{ todo.title }}</span>
+  <input type="text" [value]="todo.title" #titleInput />
   <button (click)="emitDeleteTodo(todo.id)">Delete</button>
   <button (click)="emitToggleTodo(todo.id)">Toggle</button>
+  <button (click)="emitUpdateTodo(todo.id, titleInput.value)">Update</button>
 </li>
