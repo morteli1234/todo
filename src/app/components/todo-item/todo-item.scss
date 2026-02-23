@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  border-radius: 6px;
+  outline: none;
+}
+
+:host(:focus) {
+  box-shadow: 0 0 0 2px #2563eb;
+}

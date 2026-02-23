@@ -1,1 +1,7 @@
-<header><nav>My first Angular app</nav></header>
+<header>
+  <nav>
+    <strong>My first Angular app</strong>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/todos" routerLinkActive="active">Todos</a>
+  </nav>
+</header>

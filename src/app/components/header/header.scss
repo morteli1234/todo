@@ -7,3 +7,16 @@ header {
   align-items: center;
   justify-content: space-between;
 }
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+a,
+a:visited,
+a.active {
+  color: #fff;
+  text-decoration: none;
+}

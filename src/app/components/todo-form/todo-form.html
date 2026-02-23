@@ -1,5 +1,6 @@
 <p>todo-component added!</p>
-<div>
-  <input type="text" placeholder="Add a todo" #todoInput />
-  <button (click)="submitTodo(todoInput.value)">Add</button>
-</div>
+<form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+  <input type="text" placeholder="Add a todo" formControlName="title" />
+
+  <button type="submit" [disabled]="todoForm.invalid">Add</button>
+</form>
