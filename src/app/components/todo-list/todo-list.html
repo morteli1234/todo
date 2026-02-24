@@ -1,15 +1,20 @@
 <h2>Todo List</h2>
 <app-todo-form (add)="addTodo($event)"></app-todo-form>
+<div>
+  <button type="button" (click)="setFilter('all')">All</button>
+  <button type="button" (click)="setFilter('active')">Active</button>
+  <button type="button" (click)="setFilter('completed')">Completed</button>
+</div>
 <!-- <div>
   <input type="text" placeholder="Add a todo" #todoInput />
   <button (click)="addTodo(todoInput.value)">Add</button>
 </div> -->
 
-@if (todos.length === 0) {
+@if (filteredTodos().length === 0) {
   <p>No todos yet.</p>
 } @else {
   <ul>
-    @for (todo of todos; track todo.id) {
+    @for (todo of filteredTodos(); track todo.id) {
       <li>
         <!-- <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)" />
         <span [style.text-decoration]="todo.completed ? 'line-through' : 'none'">
