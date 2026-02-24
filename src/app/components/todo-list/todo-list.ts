@@ -14,10 +14,10 @@ import { Subscription } from 'rxjs';
 export class TodoList {
   // Signal
   filter = signal<'all' | 'active' | 'completed'>(this.getInitialFilter());
-  todos = signal<TodoModel[]>([]);
+  todosSignal = signal<TodoModel[]>([]);
   filteredTodos = computed(() => {
     const currentFilter = this.filter();
-    const list = this.todos();
+    const list = this.todosSignal();
 
     if (currentFilter === 'active') return list.filter((t) => !t.completed);
     if (currentFilter === 'completed') return list.filter((t) => t.completed);
@@ -37,7 +37,7 @@ export class TodoList {
 
   ngOnInit(): void {
     this.todosSubscription = this.httpclientService.todos$.subscribe((todos) => {
-      this.todos.set(todos);
+      this.todosSignal.set(todos);
       this.cdr.detectChanges();
     });
     this.httpclientService.loadTodos();
